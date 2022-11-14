@@ -12,7 +12,7 @@ export interface YWZResponse<T> {
 interface YWZRequestConfig<T, R> extends RequestConfig<YWZResponse<R>> {
   data?: T;
 }
-const baseUrl = 'https://universalis.app/api';
+const baseUrl = 'https://fcotest.yyyy.games';
 
 const request = new Request({
   baseURL: baseUrl,
