@@ -1,7 +1,7 @@
-import Request from './request';
-import type { AxiosResponse } from 'axios';
+import Request from "./request";
+import type { AxiosResponse } from "axios";
 
-import type { RequestConfig } from './request/types';
+import type { RequestConfig } from "./request/types";
 
 export interface YWZResponse<T> {
   statusCode: number;
@@ -12,7 +12,7 @@ export interface YWZResponse<T> {
 interface YWZRequestConfig<T, R> extends RequestConfig<YWZResponse<R>> {
   data?: T;
 }
-const baseUrl = 'https://fcotest.yyyy.games';
+const baseUrl = "http://wnserver.xiangmaiya.com.cn:5000/";
 
 const request = new Request({
   baseURL: baseUrl,
@@ -22,10 +22,6 @@ const request = new Request({
     requestInterceptors: (config) => config,
     // 响应拦截器
     responseInterceptors: (result: AxiosResponse) => {
-      result.data = {
-        data: result.data,
-        statusCode: result.status,
-      };
       return result;
     },
   },

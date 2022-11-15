@@ -1,8 +1,13 @@
 // https://github.com/KeithMaxwellZ/FCO_Backend/blob/master/api.md
 
-import http from '@/https';
-import type { YWZResponse } from '@/https';
-import type { actionApiView,initiateApiView } from '@/interface/api';
+import http from "@/https";
+import type { YWZResponse } from "@/https";
+import type {
+  actionApiView,
+  initiateApiView,
+  statusApiView,
+  initApiView,
+} from "@/interface/api";
 
 export function getActions(): Promise<YWZResponse<actionApiView>> {
   return http({
@@ -10,29 +15,36 @@ export function getActions(): Promise<YWZResponse<actionApiView>> {
   });
 }
 
-
 export function getInitiate(): Promise<YWZResponse<initiateApiView>> {
   return http({
     url: `/initiate`,
   });
 }
 
-export function postStatus(uid:number): Promise<YWZResponse<object>> {
+export function postStatus(
+  uid: number,
+  data: initApiView
+): Promise<YWZResponse<object>> {
   return http({
-    method:'post',
+    data,
+    method: "post",
     url: `/engine/${uid}/start`,
   });
 }
 
-export function postUseActions(uid:number): Promise<YWZResponse<object>> {
+export function postUseActions(
+  uid: number,
+  Action: number
+): Promise<YWZResponse<object>> {
   return http({
-    method:'post',
+    data: { Action },
+    method: "post",
     url: `/engine/${uid}/use-action`,
   });
 }
 
-export function getStatus(uid:number): Promise<YWZResponse<object>> {
+export function getStatus(uid: number): Promise<YWZResponse<statusApiView>> {
   return http({
-    url: `/engine/${uid}/start`,
+    url: `/engine/${uid}`,
   });
 }

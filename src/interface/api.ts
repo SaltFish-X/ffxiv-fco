@@ -1,46 +1,47 @@
 export interface actionApiView {
-  action_name:string
-  id:number
+  action_name: string;
+  id: number;
 }
 
 export interface initiateApiView {
-  uid:number
+  uid: number;
 }
 
 export interface initApiView {
   // 制作精度
-  ProgressEfficiency: number,
+  ProgressEfficiency: number;
   // 加工精度
-  QualityEfficiency: number,
+  QualityEfficiency: number;
   // 制作力
-  TotalCP: number,
+  TotalCP: number;
   // 配方总耐久
-  TotalDurability: number,
+  TotalDurability: number;
   // 配方总进度
-  TotalProgress: number,
+  TotalProgress: number;
   // 配方总品质
-  TotalQuality: number,
+  TotalQuality: number;
   // 配方进度压制难度
-  ProgressDifficulty: number,
+  ProgressDifficulty: number;
   // 配方品质压制难度
-  QualityDifficulty: number,
+  QualityDifficulty: number;
   // 配方进度等级
-  ProgressLevel: number,
+  ProgressLevel: number;
   // 配方品质等级
-  QualityLevel: number,
+  QualityLevel: number;
   // 模式
-  Mode: number
+  Mode: number;
 }
 
-export interface stutasApiView {
-  CurrentProgress: number,
-  CurrentQuality: number,
-  CurrentCP: number,
-  CurrentDurability: number,
-  Buffs: number[]
+export interface statusApiView {
+  CurrentProgress: number;
+  CurrentQuality: number;
+  CurrentCP: number;
+  CurrentDurability: number;
+  Buffs: number[];
+  InnerQuiet: number;
 }
 
 export interface actionApiView {
-  action_name:string
-  id:number
+  action_name: string;
+  id: number;
 }

@@ -50,7 +50,11 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { reactive, ref } from "vue";
+import { reactive, ref, watch } from "vue";
+import { postStatus } from "@/https/api";
+import { useProgressStore } from "@/stores/progress";
+const progressStore = useProgressStore();
+
 const recipe = ref(1);
 const recipeOption = ref([
   {
@@ -76,6 +80,7 @@ const recipeOption = ref([
     QualityLevel: 0.6,
   },
 ]);
+
 const form = reactive({
   ProgressEfficiency: 2552,
   QualityEfficiency: 2662,
@@ -102,4 +107,15 @@ const handleChage = (value: number) => {
     form.QualityLevel = find.QualityLevel;
   }
 };
+
+function handlePostStatus() {
+  postStatus(progressStore.uid, form);
+}
+
+watch(
+  () => progressStore.uid,
+  (count, prevCount) => {
+    handlePostStatus();
+  }
+);
 </script>
