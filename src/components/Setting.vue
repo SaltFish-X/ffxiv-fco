@@ -11,7 +11,7 @@
         <el-input v-model="form.TotalCP" type="number" />
       </el-form-item>
       <el-form-item label="是否专家">
-        <el-switch v-model="form.Mode" active-value="2" inactive-value="1" />
+        <el-switch v-model="form.Mode" :active-value="2" :inactive-value="1" />
       </el-form-item>
       <el-form-item label="配方选择">
         <el-select v-model="recipe" @change="handleChage">
@@ -23,37 +23,39 @@
           />
         </el-select>
       </el-form-item>
-      <template v-if="recipe === 0">
-        <el-form-item label="配方总耐久">
-          <el-input v-model="form.TotalDurability" type="number" />
-        </el-form-item>
-        <el-form-item label="配方总进度">
-          <el-input v-model="form.TotalProgress" type="number" />
-        </el-form-item>
-        <el-form-item label="配方总品质">
-          <el-input v-model="form.TotalQuality" type="number" />
-        </el-form-item>
-        <el-form-item label="配方进度压制难度">
-          <el-input v-model="form.ProgressDifficulty" type="number" />
-        </el-form-item>
-        <el-form-item label="配方品质压制难度">
-          <el-input v-model="form.QualityDifficulty" type="number" />
-        </el-form-item>
-        <el-form-item label="配方进度等级">
-          <el-input v-model="form.ProgressLevel" type="number" />
-        </el-form-item>
-        <el-form-item label="配方品质等级">
-          <el-input v-model="form.QualityLevel" type="number" />
-        </el-form-item>
-      </template>
+
+      <el-form-item label="配方总耐久">
+        <el-input v-model="form.TotalDurability" type="number" />
+      </el-form-item>
+      <el-form-item label="配方总进度">
+        <el-input v-model="form.TotalProgress" type="number" />
+      </el-form-item>
+      <el-form-item label="配方总品质">
+        <el-input v-model="form.TotalQuality" type="number" />
+      </el-form-item>
+      <el-form-item label="进度压制难度">
+        <el-input v-model="form.ProgressDifficulty" type="number" />
+      </el-form-item>
+      <el-form-item label="品质压制难度">
+        <el-input v-model="form.QualityDifficulty" type="number" />
+      </el-form-item>
+      <el-form-item label="配方进度等级">
+        <el-input v-model="form.ProgressLevel" type="number" />
+      </el-form-item>
+      <el-form-item label="配方品质等级">
+        <el-input v-model="form.QualityLevel" type="number" />
+      </el-form-item>
     </el-form>
   </div>
 </template>
 <script lang="ts" setup>
-import { reactive, ref, watch } from "vue";
+import { onMounted, reactive, ref, watch } from "vue";
 import { postStatus } from "@/https/api";
 import { useProgressStore } from "@/stores/progress";
+import { useStatusStore } from "@/stores/status";
+
 const progressStore = useProgressStore();
+const statusStore = useStatusStore();
 
 const recipe = ref(1);
 const recipeOption = ref([
@@ -82,9 +84,9 @@ const recipeOption = ref([
 ]);
 
 const form = reactive({
-  ProgressEfficiency: 2552,
-  QualityEfficiency: 2662,
-  TotalCP: 605,
+  ProgressEfficiency: 0,
+  QualityEfficiency: 0,
+  TotalCP: 0,
   TotalDurability: 80,
   TotalProgress: 3000,
   TotalQuality: 25565,
@@ -93,6 +95,11 @@ const form = reactive({
   ProgressLevel: 0.7,
   QualityLevel: 0.6,
   Mode: 2,
+});
+statusStore.setSetting(form);
+
+onMounted(() => {
+  handleChage(recipe.value);
 });
 
 const handleChage = (value: number) => {
@@ -105,6 +112,8 @@ const handleChage = (value: number) => {
     form.QualityDifficulty = find.QualityDifficulty;
     form.ProgressLevel = find.ProgressLevel;
     form.QualityLevel = find.QualityLevel;
+
+    statusStore.setSetting(form);
   }
 };
 

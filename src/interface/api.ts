@@ -37,10 +37,14 @@ export interface statusApiView {
   CurrentQuality: number;
   CurrentCP: number;
   CurrentDurability: number;
+  CurrentStatus: string;
   Buffs: number[];
   InnerQuiet: number;
 }
 
+enum CurrentStatus {
+  "nornal", "HQ", "Centered", "Malleable", "Sturdy", "Primed"
+}
 export interface actionApiView {
   action_name: string;
   id: number;

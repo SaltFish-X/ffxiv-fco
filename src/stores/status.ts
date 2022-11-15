@@ -1,26 +1,37 @@
 import { defineStore } from "pinia";
 import { getStatus } from "@/https/api";
-import type { statusApiView } from "@/interface/api";
+import type { statusApiView, initApiView } from "@/interface/api";
 
 export const useStatusStore = defineStore("status", {
-  state: (): statusApiView => ({
-    CurrentProgress: 0,
-    CurrentQuality: 0,
-    CurrentCP: 0,
-    CurrentDurability: 0,
-    Buffs: [],
-    InnerQuiet: 0,
+  state: () => ({
+    Current: <statusApiView>{
+      CurrentProgress: 0,
+      CurrentQuality: 0,
+      CurrentCP: 0,
+      CurrentDurability: 0,
+      CurrentStatus: "normal",
+      Buffs: [],
+      InnerQuiet: 0,
+    },
+    Setting: <initApiView>{},
   }),
   actions: {
     getStatus(uid: number) {
       getStatus(uid).then((res) => {
-        this.CurrentProgress = res.data.CurrentDurability;
-        this.CurrentQuality = res.data.CurrentQuality;
-        this.CurrentCP = res.data.CurrentCP;
-        this.CurrentDurability = res.data.CurrentDurability;
-        this.Buffs = res.data.Buffs;
-        this.InnerQuiet = res.data.InnerQuiet;
+        this.Current = res.data;
       });
+    },
+
+    setSetting(data: initApiView) {
+      this.Setting = data;
+    },
+
+    init() {
+      this.Current.CurrentCP = this.Setting.TotalCP;
+      this.Current.CurrentDurability = this.Setting.TotalDurability;
+      this.Current.CurrentProgress = 0;
+      this.Current.CurrentQuality = 0;
+      this.Current.CurrentStatus = "normal";
     },
   },
 });
