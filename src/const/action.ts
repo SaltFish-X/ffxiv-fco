@@ -175,7 +175,7 @@ export const actions = [
     cp:18
   },
   {
-    enName: "Great Strides",
+    enName: "Great Stride",
     id: 25,
     cnName: "阔步",
     groups: "Buffs",
@@ -189,7 +189,7 @@ export const actions = [
     cp:18
   },
   {
-    enName: "Observe",
+    enName: "Observation",
     id: 27,
     cnName: "观察",
     groups: "Other",

@@ -2,13 +2,13 @@
   <div v-show="!progressStore.start">
     <el-form :model="form" label-width="120px">
       <el-form-item label="制作精度">
-        <el-input v-model="form.ProgressEfficiency" type="number" />
+        <el-input v-model="form.ProgressEfficiency" />
       </el-form-item>
       <el-form-item label="加工精度">
-        <el-input v-model="form.QualityEfficiency" type="number" />
+        <el-input v-model="form.QualityEfficiency" />
       </el-form-item>
       <el-form-item label="制作力">
-        <el-input v-model="form.TotalCP" type="number" />
+        <el-input v-model="form.TotalCP" />
       </el-form-item>
       <el-form-item label="是否专家">
         <el-switch v-model="form.Mode" :active-value="2" :inactive-value="1" />
@@ -25,25 +25,25 @@
       </el-form-item>
 
       <el-form-item label="配方总耐久">
-        <el-input v-model="form.TotalDurability" type="number" />
+        <el-input v-model="form.TotalDurability" />
       </el-form-item>
       <el-form-item label="配方总进度">
-        <el-input v-model="form.TotalProgress" type="number" />
+        <el-input v-model="form.TotalProgress" />
       </el-form-item>
       <el-form-item label="配方总品质">
-        <el-input v-model="form.TotalQuality" type="number" />
+        <el-input v-model="form.TotalQuality" />
       </el-form-item>
       <el-form-item label="作业难度系数">
-        <el-input v-model="form.ProgressDivider" type="number" />
+        <el-input v-model="form.ProgressDivider" />
       </el-form-item>
       <el-form-item label="加工难度系数">
-        <el-input v-model="form.QualityDivider" type="number" />
+        <el-input v-model="form.QualityDivider" />
       </el-form-item>
       <el-form-item label="作业压制系数">
-        <el-input v-model="form.ProgressModifier" type="number" />
+        <el-input v-model="form.ProgressModifier" />
       </el-form-item>
       <el-form-item label="加工压制系数">
-        <el-input v-model="form.QualityModifier" type="number" />
+        <el-input v-model="form.QualityModifier" />
       </el-form-item>
     </el-form>
   </div>
@@ -96,9 +96,10 @@ const form = reactive({
   QualityModifier: 100,
   Mode: 2,
 });
-statusStore.setSetting(form);
 
 onMounted(() => {
+  console.log(getLocalForm());
+  statusStore.setSetting(getLocalForm() || form);
   handleChage(recipe.value);
 });
 
@@ -121,10 +122,19 @@ function handlePostStatus() {
   postStatus(progressStore.uid, form);
 }
 
+function setLocalForm() {
+  window.localStorage.setItem("form", JSON.stringify(form));
+}
+
+function getLocalForm() {
+  return JSON.parse(window.localStorage.getItem("form") || "0");
+}
+
 watch(
   () => progressStore.uid,
   (count, prevCount) => {
     handlePostStatus();
+    setLocalForm();
   }
 );
 </script>
