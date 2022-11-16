@@ -98,8 +98,12 @@ const form = reactive({
 });
 
 onMounted(() => {
-  console.log(getLocalForm());
-  statusStore.setSetting(getLocalForm() || form);
+  const LocalForm = getLocalForm();
+  form.ProgressEfficiency = LocalForm.ProgressEfficiency;
+  form.QualityEfficiency = LocalForm.QualityEfficiency;
+  form.TotalCP = LocalForm.TotalCP;
+  statusStore.setSetting(form);
+
   handleChage(recipe.value);
 });
 
@@ -120,6 +124,7 @@ const handleChage = (value: number) => {
 
 function handlePostStatus() {
   postStatus(progressStore.uid, form);
+  statusStore.init();
 }
 
 function setLocalForm() {
