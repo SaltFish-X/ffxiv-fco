@@ -65,7 +65,19 @@
         </div>
       </div>
     </div>
-    <div class="mt-10">
+    <div class="Progress-buff flex mt-4">
+      <div class="mr-5">
+        <img :src="getImageUrl('InnerQuiet')" width="30" />
+        <div class="text-center">{{ StatusStore.Current.InnerQuiet }}</div>
+      </div>
+      <div v-for="(value, key) in StatusStore.Current.Buffs">
+        <div class="mr-5">
+          <img :src="getImageUrl(key)" width="30" />
+          <div class="text-center">{{ value }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="mt-4">
       <el-button v-if="!progressStore.start" @click="handleStart" type="primary"
         >开始制作</el-button
       >
@@ -78,6 +90,7 @@ import { useStatusStore } from "@/stores/status";
 import { useProgressStore } from "@/stores/progress";
 import { ballcolor } from "@/const/ballcolor";
 import { computed } from "@vue/reactivity";
+import { getImageUrl } from "@/utils/getImageUrl";
 const progressStore = useProgressStore();
 const StatusStore = useStatusStore();
 

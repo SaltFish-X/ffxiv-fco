@@ -10,7 +10,7 @@ export const useStatusStore = defineStore("status", {
       CurrentCP: 0,
       CurrentDurability: 0,
       CurrentStatus: "normal",
-      Buffs: [],
+      Buffs: {},
       InnerQuiet: 0,
     },
     Setting: <initApiView>{},
@@ -32,6 +32,8 @@ export const useStatusStore = defineStore("status", {
       this.Current.CurrentProgress = 0;
       this.Current.CurrentQuality = 0;
       this.Current.CurrentStatus = "normal";
+      this.Current.Buffs = {}
+      this.Current.InnerQuiet = 0
     },
   },
 });

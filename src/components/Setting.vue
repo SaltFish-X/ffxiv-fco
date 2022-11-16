@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="!progressStore.start">
     <el-form :model="form" label-width="120px">
       <el-form-item label="制作精度">
         <el-input v-model="form.ProgressEfficiency" type="number" />

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-show="progressStore.start">
     <div v-for="i in actionsList" class="mt-4">
       <div>{{ i.name }}</div>
       <div class="flex">
@@ -21,7 +21,7 @@ import { postUseActions } from "@/https/api";
 import { useProgressStore } from "@/stores/progress";
 import { useStatusStore } from "@/stores/status";
 import { ElMessage } from "element-plus";
-
+import { getImageUrl } from "@/utils/getImageUrl";
 const progressStore = useProgressStore();
 const statusStore = useStatusStore();
 
@@ -33,10 +33,6 @@ const actionsList = [
   { name: "增益", key: "Buffs" },
   { name: "其他", key: "Other" },
 ];
-
-function getImageUrl(name: string) {
-  return new URL(`/src/assets/actions/${name}.png`, import.meta.url).href;
-}
 
 function useAction(id: number) {
   postUseActions(progressStore.uid, id).then((res) => {

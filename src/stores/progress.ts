@@ -12,12 +12,12 @@ export const useProgressStore = defineStore("progress", {
       return getInitiate().then((res) => {
         this.uid = res.data.uid;
         this.start = 1;
-        const statusStore = useStatusStore();
-        statusStore.init();
       });
     },
     handleEnd() {
       this.start = 0;
+      const statusStore = useStatusStore();
+      statusStore.init();
     },
   },
 });
