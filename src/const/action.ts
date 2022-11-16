@@ -43,7 +43,7 @@ export const actions = [
   },
   {
     enName: "Groundwork",
-    id: 9,
+    id: 6,
     cnName: "坯料制作",
     groups: "Synthesis",
     cp:18
@@ -64,7 +64,7 @@ export const actions = [
   },
   {
     enName: "Delicate Synthesis",
-    id: 31,
+    id: 9,
     cnName: "精密制作",
     groups: "Synthesis",
     cp:32
@@ -148,7 +148,7 @@ export const actions = [
   },
   {
     enName: "Waste Not",
-    id: 23,
+    id: 21,
     cnName: "俭约",
     groups: "Durability",
     cp:56
@@ -162,7 +162,7 @@ export const actions = [
   },
   {
     enName: "Manipulation",
-    id: 31,
+    id: 23,
     cnName: "掌握",
     groups: "Durability",
     cp:96

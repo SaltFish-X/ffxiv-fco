@@ -33,17 +33,17 @@
       <el-form-item label="配方总品质">
         <el-input v-model="form.TotalQuality" type="number" />
       </el-form-item>
-      <el-form-item label="进度压制难度">
-        <el-input v-model="form.ProgressDifficulty" type="number" />
+      <el-form-item label="作业难度系数">
+        <el-input v-model="form.ProgressDivider" type="number" />
       </el-form-item>
-      <el-form-item label="品质压制难度">
-        <el-input v-model="form.QualityDifficulty" type="number" />
+      <el-form-item label="加工难度系数">
+        <el-input v-model="form.QualityDivider" type="number" />
       </el-form-item>
-      <el-form-item label="配方进度等级">
-        <el-input v-model="form.ProgressLevel" type="number" />
+      <el-form-item label="作业压制系数">
+        <el-input v-model="form.ProgressModifier" type="number" />
       </el-form-item>
-      <el-form-item label="配方品质等级">
-        <el-input v-model="form.QualityLevel" type="number" />
+      <el-form-item label="加工压制系数">
+        <el-input v-model="form.QualityModifier" type="number" />
       </el-form-item>
     </el-form>
   </div>
@@ -65,10 +65,10 @@ const recipeOption = ref([
     TotalDurability: 80,
     TotalProgress: 0,
     TotalQuality: 0,
-    ProgressDifficulty: 13,
-    QualityDifficulty: 11.5,
-    ProgressLevel: 1,
-    QualityLevel: 1,
+    ProgressDivider: 100,
+    QualityDivider: 100,
+    ProgressModifier: 100,
+    QualityModifier: 100,
   },
   {
     label: "6.2 獭獭泉",
@@ -76,24 +76,24 @@ const recipeOption = ref([
     TotalDurability: 60,
     TotalProgress: 7480,
     TotalQuality: 13620,
-    ProgressDifficulty: 180,
-    QualityDifficulty: 180,
-    ProgressLevel: 0.7,
-    QualityLevel: 0.6,
+    ProgressDivider: 180,
+    QualityDivider: 180,
+    ProgressModifier: 100,
+    QualityModifier: 100,
   },
 ]);
 
 const form = reactive({
-  ProgressEfficiency: 0,
-  QualityEfficiency: 0,
-  TotalCP: 0,
+  ProgressEfficiency: 3804,
+  QualityEfficiency: 3804,
+  TotalCP: 588,
   TotalDurability: 80,
   TotalProgress: 3000,
   TotalQuality: 25565,
-  ProgressDifficulty: 13,
-  QualityDifficulty: 11.5,
-  ProgressLevel: 0.7,
-  QualityLevel: 0.6,
+  ProgressDivider: 13,
+  QualityDivider: 11.5,
+  ProgressModifier: 100,
+  QualityModifier: 100,
   Mode: 2,
 });
 statusStore.setSetting(form);
@@ -108,10 +108,10 @@ const handleChage = (value: number) => {
     form.TotalDurability = find.TotalDurability;
     form.TotalProgress = find.TotalProgress;
     form.TotalQuality = find.TotalQuality;
-    form.ProgressDifficulty = find.ProgressDifficulty;
-    form.QualityDifficulty = find.QualityDifficulty;
-    form.ProgressLevel = find.ProgressLevel;
-    form.QualityLevel = find.QualityLevel;
+    form.ProgressDivider = find.ProgressDivider;
+    form.QualityDivider = find.QualityDivider;
+    form.ProgressModifier = find.ProgressModifier;
+    form.QualityModifier = find.QualityModifier;
 
     statusStore.setSetting(form);
   }

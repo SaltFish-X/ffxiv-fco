@@ -8,8 +8,8 @@ export const ballcolor =[
   {
     name:'HQ',
     color:'#FF0000',//red 红-秘诀，集中技能
-    remark:'',
-    tips:'高品质 品质上升量是通常的1.5倍',
+    remark:'高品质 品质上升量是通常的1.5倍',
+    tips:'',
   },
   {
     name:'Centered',

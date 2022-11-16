@@ -4,7 +4,8 @@ import type { AxiosResponse } from "axios";
 import type { RequestConfig } from "./request/types";
 
 export interface YWZResponse<T> {
-  statusCode: number;
+  code: number;
+  message: string;
   data: T;
 }
 

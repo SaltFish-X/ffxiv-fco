@@ -21,13 +21,13 @@ export interface initApiView {
   // 配方总品质
   TotalQuality: number;
   // 配方进度压制难度
-  ProgressDifficulty: number;
+  ProgressDivider: number;
   // 配方品质压制难度
-  QualityDifficulty: number;
+  QualityDivider: number;
   // 配方进度等级
-  ProgressLevel: number;
+  ProgressModifier: number;
   // 配方品质等级
-  QualityLevel: number;
+  QualityModifier: number;
   // 模式
   Mode: number;
 }

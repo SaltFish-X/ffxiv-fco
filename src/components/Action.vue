@@ -20,6 +20,8 @@ import { actions } from "@/const/action";
 import { postUseActions } from "@/https/api";
 import { useProgressStore } from "@/stores/progress";
 import { useStatusStore } from "@/stores/status";
+import { ElMessage } from "element-plus";
+
 const progressStore = useProgressStore();
 const statusStore = useStatusStore();
 
@@ -38,6 +40,12 @@ function getImageUrl(name: string) {
 
 function useAction(id: number) {
   postUseActions(progressStore.uid, id).then((res) => {
+    console.log(res);
+    ElMessage({
+      showClose: true,
+      message: res.message,
+      center: true,
+    });
     statusStore.getStatus(progressStore.uid);
   });
 }
