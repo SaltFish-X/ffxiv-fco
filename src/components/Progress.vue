@@ -67,7 +67,7 @@
     </div>
     <div class="Progress-buff flex mt-4">
       <div class="mr-5">
-        <img :src="getImageUrl('InnerQuiet')" width="30" />
+        <img :src="InnerQuiet" width="30" />
         <div class="text-center">{{ StatusStore.Current.InnerQuiet }}</div>
       </div>
       <div v-for="(value, key) in StatusStore.Current.Buffs">
@@ -91,6 +91,7 @@ import { useProgressStore } from "@/stores/progress";
 import { ballcolor } from "@/const/ballcolor";
 import { computed } from "@vue/reactivity";
 import { getImageUrl } from "@/utils/getImageUrl";
+import InnerQuiet from "@/assets/actions/InnerQuiet.png";
 const progressStore = useProgressStore();
 const StatusStore = useStatusStore();
 
