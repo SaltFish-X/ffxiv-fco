@@ -95,7 +95,7 @@ import { useProgressStore } from "@/stores/progress";
 import { ballcolor } from "@/const/ballcolor";
 import { computed } from "@vue/reactivity";
 import { getImageUrl } from "@/utils/getImageUrl";
-import InnerQuiet from "@/assets/actions/InnerQuiet.png";
+import InnerQuiet from "@/assets/InnerQuiet.png";
 const progressStore = useProgressStore();
 const StatusStore = useStatusStore();
 
