@@ -71,7 +71,7 @@
         <div class="text-center">{{ StatusStore.Current.InnerQuiet }}</div>
       </div>
       <div v-for="(value, key) in StatusStore.Current.Buffs">
-        <div class="mr-5">
+        <div class="mr-5" v-if="value > 0">
           <img :src="getImageUrl(key)" width="30" />
           <div class="text-center">{{ value }}</div>
         </div>

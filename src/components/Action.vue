@@ -8,7 +8,15 @@
           class="mr-4 relative"
           @click="useAction(j.id)"
         >
-          <img :src="getImageUrl(j.enName)" class="action-img" />
+          <img
+            :src="getImageUrl(j.enName)"
+            class="action-img"
+            :class="{
+              'is-disabled':
+                j.isHQ && statusStore.Current.CurrentStatus !== 'HQ',
+              'is-hq-use': j.isHQ && statusStore.Current.CurrentStatus === 'HQ',
+            }"
+          />
           <span class="action-cp" v-if="j.cp > 0">{{ j.cp }}</span>
         </div>
       </div>
@@ -67,5 +75,13 @@ function useAction(id: number) {
   color: white;
   text-shadow: #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px,
     #000 0px 0px 2px, #000 0px 0px 2px, #000 0px 0px 2px;
+}
+
+.is-disabled {
+  opacity: 0.4;
+}
+
+.is-hq-use {
+  border: dashed 3px red;
 }
 </style>
