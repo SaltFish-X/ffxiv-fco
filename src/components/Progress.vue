@@ -60,8 +60,12 @@
             StatusStore.Setting.TotalDurability
           }}
         </div>
-        <div>
-          {{ "状态：" + ballcolorStatus?.remark }}
+        <div class="flex">
+          <div
+            class="ball"
+            :style="{ background: ballcolorStatus?.color }"
+          ></div>
+          <div>{{ ballcolorStatus?.remark }}</div>
         </div>
       </div>
     </div>
@@ -107,3 +111,17 @@ const ballcolorStatus = computed(() =>
   ballcolor.find((e) => e.name === StatusStore.Current.CurrentStatus)
 );
 </script>
+<style>
+.ball {
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.Progress {
+  /* padding: 10px; */
+  border: soild 1px #000;
+  border-radius: 10px;
+}
+</style>
