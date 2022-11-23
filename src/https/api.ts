@@ -7,6 +7,7 @@ import type {
   initiateApiView,
   statusApiView,
   initApiView,
+  actionResponseView
 } from "@/interface/api";
 
 export function getActions(): Promise<YWZResponse<actionApiView>> {
@@ -35,7 +36,7 @@ export function postStatus(
 export function postUseActions(
   uid: number,
   Action: number
-): Promise<YWZResponse<object>> {
+): Promise<YWZResponse<actionResponseView>> {
   return http({
     data: { Action },
     method: "post",

@@ -52,6 +52,9 @@ function useAction(id: number) {
       center: true,
     });
     statusStore.getStatus(progressStore.uid);
+    if (res.data && res.data["Action Result"] === 200) {
+      progressStore.successTurn += 1;
+    }
   });
 }
 

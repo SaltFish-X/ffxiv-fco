@@ -1,55 +1,62 @@
 <template>
-  <div v-show="!progressStore.start">
-    <el-form :model="form" label-width="120px">
-      <el-form-item label="制作精度">
-        <el-input v-model="form.ProgressEfficiency" />
-      </el-form-item>
-      <el-form-item label="加工精度">
-        <el-input v-model="form.QualityEfficiency" />
-      </el-form-item>
-      <el-form-item label="制作力">
-        <el-input v-model="form.TotalCP" />
-      </el-form-item>
-      <el-form-item label="是否专家">
-        <el-switch v-model="form.Mode" :active-value="2" :inactive-value="1" />
-      </el-form-item>
-      <el-form-item label="配方选择">
-        <el-select v-model="recipe" @change="handleChage">
-          <el-option
-            v-for="item in recipeOption"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
+  <div>
+    <div v-show="progressStore.start" class="ml-4">{{ recordTurn }}</div>
+    <div v-show="!progressStore.start">
+      <el-form :model="form" label-width="120px">
+        <el-form-item label="制作精度">
+          <el-input v-model="form.ProgressEfficiency" />
+        </el-form-item>
+        <el-form-item label="加工精度">
+          <el-input v-model="form.QualityEfficiency" />
+        </el-form-item>
+        <el-form-item label="制作力">
+          <el-input v-model="form.TotalCP" />
+        </el-form-item>
+        <el-form-item label="是否专家">
+          <el-switch
+            v-model="form.Mode"
+            :active-value="2"
+            :inactive-value="1"
           />
-        </el-select>
-      </el-form-item>
+        </el-form-item>
+        <el-form-item label="配方选择">
+          <el-select v-model="recipe" @change="handleChage">
+            <el-option
+              v-for="item in recipeOption"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
 
-      <el-form-item label="配方总耐久">
-        <el-input v-model="form.TotalDurability" />
-      </el-form-item>
-      <el-form-item label="配方总进度">
-        <el-input v-model="form.TotalProgress" />
-      </el-form-item>
-      <el-form-item label="配方总品质">
-        <el-input v-model="form.TotalQuality" />
-      </el-form-item>
-      <el-form-item label="作业难度系数">
-        <el-input v-model="form.ProgressDivider" />
-      </el-form-item>
-      <el-form-item label="加工难度系数">
-        <el-input v-model="form.QualityDivider" />
-      </el-form-item>
-      <el-form-item label="作业压制系数">
-        <el-input v-model="form.ProgressModifier" />
-      </el-form-item>
-      <el-form-item label="加工压制系数">
-        <el-input v-model="form.QualityModifier" />
-      </el-form-item>
-    </el-form>
+        <el-form-item label="配方总耐久">
+          <el-input v-model="form.TotalDurability" />
+        </el-form-item>
+        <el-form-item label="配方总进度">
+          <el-input v-model="form.TotalProgress" />
+        </el-form-item>
+        <el-form-item label="配方总品质">
+          <el-input v-model="form.TotalQuality" />
+        </el-form-item>
+        <el-form-item label="作业难度系数">
+          <el-input v-model="form.ProgressDivider" />
+        </el-form-item>
+        <el-form-item label="加工难度系数">
+          <el-input v-model="form.QualityDivider" />
+        </el-form-item>
+        <el-form-item label="作业压制系数">
+          <el-input v-model="form.ProgressModifier" />
+        </el-form-item>
+        <el-form-item label="加工压制系数">
+          <el-input v-model="form.QualityModifier" />
+        </el-form-item>
+      </el-form>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, reactive, ref, watch } from "vue";
+import { onMounted, reactive, ref, watch, computed } from "vue";
 import { postStatus } from "@/https/api";
 import { useProgressStore } from "@/stores/progress";
 import { useStatusStore } from "@/stores/status";
@@ -142,4 +149,16 @@ watch(
     setLocalForm();
   }
 );
+
+const recordTurn = computed(() => {
+  return `制作总次数：${progressStore.allTurn}；制作成功次数：${
+    progressStore.successTurn
+  }；制作成功率：${
+    Math.round(
+      progressStore.allTurn
+        ? progressStore.successTurn / progressStore.allTurn
+        : 0
+    ) * 100
+  }%`;
+});
 </script>

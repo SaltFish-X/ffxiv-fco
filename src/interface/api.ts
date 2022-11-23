@@ -56,3 +56,7 @@ export interface actionApiView {
   action_name: string;
   id: number;
 }
+
+export interface actionResponseView {
+  "Action Result"?: number;
+}
