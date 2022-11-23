@@ -14,7 +14,10 @@
             :class="{
               'is-disabled':
                 j.isHQ && statusStore.Current.CurrentStatus !== 'HQ',
-              'is-hq-use': j.isHQ && statusStore.Current.CurrentStatus === 'HQ',
+              'is-hq-use':
+                j.isHQ &&
+                (statusStore.Current.CurrentStatus === 'HQ' ||
+                  statusStore.Current.Buffs['Heart And Soul']),
             }"
           />
           <span class="action-cp" v-if="j.cp > 0">{{ j.cp }}</span>

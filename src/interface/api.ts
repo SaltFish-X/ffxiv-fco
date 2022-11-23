@@ -38,7 +38,9 @@ export interface statusApiView {
   CurrentCP: number;
   CurrentDurability: number;
   CurrentStatus: string;
-  Buffs: {};
+  Buffs: {
+    "Heart And Soul": number;
+  };
   InnerQuiet: number;
 }
 
