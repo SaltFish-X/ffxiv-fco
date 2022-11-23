@@ -84,9 +84,9 @@ const recipeOption = ref([
 ]);
 
 const form = reactive({
-  ProgressEfficiency: 3804,
-  QualityEfficiency: 3804,
-  TotalCP: 588,
+  ProgressEfficiency: 3820,
+  QualityEfficiency: 3640,
+  TotalCP: 676,
   TotalDurability: 80,
   TotalProgress: 3000,
   TotalQuality: 25565,

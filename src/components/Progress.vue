@@ -70,7 +70,7 @@
       </div>
     </div>
     <div class="Progress-buff flex mt-4">
-      <div class="mr-5">
+      <div class="mr-5" v-if="StatusStore.Current.InnerQuiet > 0">
         <img :src="InnerQuiet" width="30" />
         <div class="text-center">{{ StatusStore.Current.InnerQuiet }}</div>
       </div>
