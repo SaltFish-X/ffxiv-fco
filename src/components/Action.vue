@@ -12,12 +12,8 @@
             :src="getImageUrl(j.enName)"
             class="action-img"
             :class="{
-              'is-disabled':
-                j.isHQ && statusStore.Current.CurrentStatus !== 'HQ',
-              'is-hq-use':
-                j.isHQ &&
-                (statusStore.Current.CurrentStatus === 'HQ' ||
-                  statusStore.Current.Buffs['Heart And Soul']),
+              'is-disabled': j.isHQ && !isHqUse,
+              'is-hq-use': j.isHQ && isHqUse,
             }"
           />
           <span class="action-cp" v-if="j.cp > 0">{{ j.cp }}</span>
@@ -33,6 +29,8 @@ import { useProgressStore } from "@/stores/progress";
 import { useStatusStore } from "@/stores/status";
 import { ElMessage } from "element-plus";
 import { getImageUrl } from "@/utils/getImageUrl";
+import { computed } from "vue";
+
 const progressStore = useProgressStore();
 const statusStore = useStatusStore();
 
@@ -56,6 +54,13 @@ function useAction(id: number) {
     statusStore.getStatus(progressStore.uid);
   });
 }
+
+const isHqUse = computed(() => {
+  return (
+    statusStore.Current.CurrentStatus === "HQ" ||
+    statusStore.Current.Buffs["Heart And Soul"]
+  );
+});
 </script>
 
 <style>
