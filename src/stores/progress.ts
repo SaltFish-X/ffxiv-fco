@@ -24,9 +24,9 @@ export const useProgressStore = defineStore("progress", {
         this.count.allTurn += 1;
 
         this.count.rapidAll += this.count.rapidAllTurn
-        this.count.rapidSuccess += this.count.rapidSuccess
+        this.count.rapidSuccess += this.count.rapidSuccessTurn
         this.count.rapidAllTurn = 0
-        this.count.rapidSuccess = 0
+        this.count.rapidSuccessTurn = 0
       });
     },
     handleEnd() {
