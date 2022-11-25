@@ -52,8 +52,16 @@ function useAction(id: number) {
       center: true,
     });
     statusStore.getStatus(progressStore.uid);
+    // 计算高速
+    if (id === 4) {
+      progressStore.count.rapidAllTurn += 1;
+      if (res.data && res.data["Action Result"] === 100) {
+        progressStore.count.rapidSuccessTurn += 1;
+      }
+    }
+
     if (res.data && res.data["Action Result"] === 200) {
-      progressStore.successTurn += 1;
+      progressStore.count.successTurn += 1;
     }
   });
 }

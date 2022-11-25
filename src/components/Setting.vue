@@ -2,6 +2,7 @@
   <div>
     <div v-show="progressStore.start" class="ml-4">
       <div>{{ recordTurn }}</div>
+      <div>{{ rapidRecord }}</div>
       <div v-show="statusStore.Current.InnerQuiet">{{ extraDurability }}</div>
     </div>
 
@@ -143,7 +144,7 @@ function setLocalForm() {
 }
 
 function getLocalForm() {
-  return JSON.parse(window.localStorage.getItem("form") || "");
+  return JSON.parse(window.localStorage.getItem("form") || "0");
 }
 
 watch(
@@ -155,13 +156,17 @@ watch(
 );
 
 const recordTurn = computed(() => {
-  return `制作总次数：${progressStore.allTurn}；制作成功次数：${
-    progressStore.successTurn
+  return `制作总次数：${progressStore.count.allTurn}；制作成功次数：${
+    progressStore.count.successTurn
   }；制作成功率：${Math.round(
-    progressStore.allTurn
-      ? (progressStore.successTurn * 100) / progressStore.allTurn
+    progressStore.count.allTurn
+      ? (progressStore.count.successTurn * 100) / progressStore.count.allTurn
       : 0
   )}%`;
+});
+
+const rapidRecord = computed(() => {
+  return `高速总数：${progressStore.count.rapidAll}；高速总成功数：${progressStore.count.rapidSuccess}；本轮高速次数${progressStore.count.rapidAllTurn}；本轮高速成功率${progressStore.count.rapidSuccessTurn}`;
 });
 
 const extraDurability = computed(() => {

@@ -6,15 +6,27 @@ export const useProgressStore = defineStore("progress", {
   state: () => ({
     start: 0,
     uid: -1,
-    allTurn: 0,
-    successTurn: 0,
+    count:{
+      allTurn: 0,
+      successTurn: 0,
+      rapidAll:0,
+      rapidSuccess:0,
+      rapidAllTurn:0,
+      rapidSuccessTurn:0
+    }
+
   }),
   actions: {
     handleStart() {
       return getInitiate().then((res) => {
         this.uid = res.data.uid;
         this.start = 1;
-        this.allTurn += 1;
+        this.count.allTurn += 1;
+
+        this.count.rapidAll += this.count.rapidAllTurn
+        this.count.rapidSuccess += this.count.rapidSuccess
+        this.count.rapidAllTurn = 0
+        this.count.rapidSuccess = 0
       });
     },
     handleEnd() {
