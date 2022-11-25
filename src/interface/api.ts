@@ -40,6 +40,7 @@ export interface statusApiView {
   CurrentStatus: string;
   Buffs: {
     "Heart And Soul": number;
+    Manipulation: number;
   };
   InnerQuiet: number;
 }

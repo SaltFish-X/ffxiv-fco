@@ -81,7 +81,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-4">
+    <div class="mt-2">
       <el-button v-if="!progressStore.start" @click="handleStart" type="primary"
         >开始制作</el-button
       >

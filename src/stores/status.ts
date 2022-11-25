@@ -33,9 +33,10 @@ export const useStatusStore = defineStore("status", {
       this.Current.CurrentQuality = 0;
       this.Current.CurrentStatus = "normal";
       this.Current.Buffs = {
-        "Heart And Soul": 0
-      }
-      this.Current.InnerQuiet = 0
+        "Heart And Soul": 0,
+        Manipulation: 0,
+      };
+      this.Current.InnerQuiet = 0;
     },
   },
 });

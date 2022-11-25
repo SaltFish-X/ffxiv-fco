@@ -1,6 +1,6 @@
 <template>
   <div v-show="progressStore.start">
-    <div v-for="i in actionsList" class="mt-4">
+    <div v-for="i in actionsList" class="mt-2">
       <div>{{ i.name }}</div>
       <div class="flex">
         <div

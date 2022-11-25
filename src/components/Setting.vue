@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div v-show="progressStore.start" class="ml-4">{{ recordTurn }}</div>
+    <div v-show="progressStore.start" class="ml-4">
+      <div>{{ recordTurn }}</div>
+      <div v-show="statusStore.Current.InnerQuiet">{{ extraDurability }}</div>
+    </div>
+
     <div v-show="!progressStore.start">
       <el-form :model="form" label-width="120px">
         <el-form-item label="制作精度">
@@ -153,12 +157,20 @@ watch(
 const recordTurn = computed(() => {
   return `制作总次数：${progressStore.allTurn}；制作成功次数：${
     progressStore.successTurn
-  }；制作成功率：${
-    Math.round(
-      progressStore.allTurn
-        ? progressStore.successTurn / progressStore.allTurn
-        : 0
-    ) * 100
-  }%`;
+  }；制作成功率：${Math.round(
+    progressStore.allTurn
+      ? (progressStore.successTurn * 100) / progressStore.allTurn
+      : 0
+  )}%`;
+});
+
+const extraDurability = computed(() => {
+  // 当前耐久 + 5*掌握层数 - 5*(10-内静层数) - 11
+  const extra =
+    statusStore.Current.CurrentDurability +
+    5 * statusStore.Current.Buffs.Manipulation -
+    5 * (10 - statusStore.Current.InnerQuiet) -
+    11;
+  return `额外耐久：${extra}`;
 });
 </script>

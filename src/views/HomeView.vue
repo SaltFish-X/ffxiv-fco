@@ -1,7 +1,7 @@
 <template>
-  <div class="flex m-10">
+  <div class="flex m-8">
     <div class="w-1/2">
-      <Progress class="mb-10"></Progress>
+      <Progress class="mb-4"></Progress>
       <Action></Action>
     </div>
     <Setting></Setting>
