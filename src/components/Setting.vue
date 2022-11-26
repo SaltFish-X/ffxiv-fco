@@ -166,7 +166,7 @@ const recordTurn = computed(() => {
 });
 
 const rapidRecord = computed(() => {
-  return `高速总数：${progressStore.count.rapidAll}；高速总成功数：${progressStore.count.rapidSuccess}；本轮高速次数${progressStore.count.rapidAllTurn}；本轮高速成功率${progressStore.count.rapidSuccessTurn}`;
+  return `高速总数：${progressStore.count.rapidAll}；高速总成功数：${progressStore.count.rapidSuccess}；本轮高速次数${progressStore.count.rapidAllTurn}；本轮高速成功次数${progressStore.count.rapidSuccessTurn}`;
 });
 
 const extraDurability = computed(() => {

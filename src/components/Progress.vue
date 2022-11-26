@@ -69,13 +69,13 @@
         </div>
       </div>
     </div>
-    <div class="Progress-buff flex mt-4">
-      <div class="mr-5" v-if="StatusStore.Current.InnerQuiet > 0">
+    <div class="Progress-buff flex mt-2 h-14">
+      <div class="mr-4" v-if="StatusStore.Current.InnerQuiet > 0">
         <img :src="InnerQuiet" width="30" />
         <div class="text-center">{{ StatusStore.Current.InnerQuiet }}</div>
       </div>
       <div v-for="(value, key) in StatusStore.Current.Buffs">
-        <div class="mr-5" v-if="value > 0">
+        <div class="mr-4" v-if="value > 0">
           <img :src="getImageUrl(key)" width="30" />
           <div class="text-center">{{ value }}</div>
         </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="flex m-8">
+  <div class="flex mx-8 mt-4">
     <div class="w-1/2">
       <Progress class="mb-4"></Progress>
       <Action></Action>
