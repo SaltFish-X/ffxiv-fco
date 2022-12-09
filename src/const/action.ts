@@ -219,4 +219,12 @@ export const actions = [
     groups: "Other",
     cp: 0,
   },
+  {
+    enName: "Careful Observation",
+    id: 31,
+    cnName: "设计变动",
+    groups: "Other",
+    cp: 0,
+  },
+  
 ];
