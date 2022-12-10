@@ -27,7 +27,6 @@ import { actions } from "@/const/action";
 import { postUseActions } from "@/https/api";
 import { useProgressStore } from "@/stores/progress";
 import { useStatusStore } from "@/stores/status";
-import { ElMessage } from "element-plus";
 import { getImageUrl } from "@/utils/getImageUrl";
 import { computed } from "vue";
 
@@ -45,13 +44,11 @@ const actionsList = [
 
 function useAction(id: number) {
   postUseActions(progressStore.uid, id).then((res) => {
-    ElMessage.closeAll();
-
-    ElMessage({
-      message: res.message,
-      center: true,
-      duration: 1500,
+    progressStore.updateMessage({
+      info: res.message,
+      code: (res.data && res.data["Action Result"]) || 101,
     });
+
     statusStore.getStatus(progressStore.uid);
     // 计算高速
     if (id === 4) {

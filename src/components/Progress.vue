@@ -69,6 +69,27 @@
         </div>
       </div>
     </div>
+
+    <div class="mt-2 flex justify-between hidden-sm-and-up">
+      <el-button
+        v-if="!progressStore.start"
+        @click="handleStart"
+        type="primary"
+        size="small"
+        >开始制作</el-button
+      >
+      <el-button v-else @click="handleEnd" size="small">结束制作</el-button>
+      <div :class="colortext">{{ progressStore.message.info }}</div>
+    </div>
+
+    <div class="mt-2 flex justify-between hidden-xs-only">
+      <el-button v-if="!progressStore.start" @click="handleStart" type="primary"
+        >开始制作</el-button
+      >
+      <el-button v-else @click="handleEnd">结束制作</el-button>
+      <div :class="colortext">{{ progressStore.message.info }}</div>
+    </div>
+
     <div class="Progress-buff flex mt-2 h-14">
       <div class="mr-4" v-if="StatusStore.Current.InnerQuiet > 0">
         <img :src="InnerQuiet" width="30" />
@@ -80,12 +101,6 @@
           <div class="text-center">{{ value }}</div>
         </div>
       </div>
-    </div>
-    <div class="mt-2">
-      <el-button v-if="!progressStore.start" @click="handleStart" type="primary"
-        >开始制作</el-button
-      >
-      <el-button v-else @click="handleEnd">结束制作</el-button>
     </div>
   </div>
 </template>
@@ -109,6 +124,10 @@ function handleEnd() {
 
 const ballcolorStatus = computed(() =>
   ballcolor.find((e) => e.name === StatusStore.Current.CurrentStatus)
+);
+
+const colortext = computed(() =>
+  progressStore.message.code === 100 ? "succuess" : "warnning"
 );
 </script>
 <style>
@@ -139,5 +158,13 @@ const ballcolorStatus = computed(() =>
     border-radius: 50%;
     margin: auto 2px;
   }
+}
+
+.succuess {
+  color: #67c23a;
+}
+
+.warnning {
+  color: red;
 }
 </style>
