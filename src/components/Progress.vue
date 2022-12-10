@@ -70,7 +70,7 @@
       </div>
     </div>
 
-    <div class="mt-2 flex justify-between hidden-sm-and-up">
+    <div class="mt-2 flex justify-between hidden-sm-and-up items-center">
       <el-button
         v-if="!progressStore.start"
         @click="handleStart"
@@ -82,7 +82,7 @@
       <div :class="colortext">{{ progressStore.message.info }}</div>
     </div>
 
-    <div class="mt-2 flex justify-between hidden-xs-only">
+    <div class="mt-2 flex justify-between hidden-xs-only items-center">
       <el-button v-if="!progressStore.start" @click="handleStart" type="primary"
         >开始制作</el-button
       >

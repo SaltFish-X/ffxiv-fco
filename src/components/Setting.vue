@@ -1,5 +1,5 @@
 <template>
-  <div class="Setting">
+  <div class="Setting ml-5">
     <div v-show="progressStore.start">
       <div>{{ recordTurn }}</div>
       <div>{{ rapidRecord }}</div>
@@ -7,7 +7,7 @@
     </div>
 
     <div v-show="!progressStore.start">
-      <el-form :model="form" label-width="120px">
+      <el-form :model="form" label-width="100px" label-position="left">
         <el-form-item label="制作精度">
           <el-input v-model="form.ProgressEfficiency" />
         </el-form-item>
