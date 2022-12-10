@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div v-show="progressStore.start" class="ml-4">
+  <div class="Setting">
+    <div v-show="progressStore.start">
       <div>{{ recordTurn }}</div>
       <div>{{ rapidRecord }}</div>
       <div v-show="statusStore.Current.InnerQuiet">{{ extraDurability }}</div>

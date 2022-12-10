@@ -2,10 +2,10 @@
   <div v-show="progressStore.start">
     <div v-for="i in actionsList" class="mt-2">
       <div>{{ i.name }}</div>
-      <div class="flex">
+      <div class="flex flex-wrap">
         <div
           v-for="j in actions.filter((e) => e.groups === i.key)"
-          class="mr-4 relative"
+          class="m-1 relative"
           @click="useAction(j.id)"
         >
           <img
@@ -45,7 +45,8 @@ const actionsList = [
 
 function useAction(id: number) {
   postUseActions(progressStore.uid, id).then((res) => {
-    console.log(res);
+    ElMessage.closeAll();
+
     ElMessage({
       showClose: true,
       message: res.message,
