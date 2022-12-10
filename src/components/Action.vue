@@ -48,9 +48,9 @@ function useAction(id: number) {
     ElMessage.closeAll();
 
     ElMessage({
-      showClose: true,
       message: res.message,
       center: true,
+      duration: 1500,
     });
     statusStore.getStatus(progressStore.uid);
     // 计算高速

@@ -24,4 +24,10 @@ import Action from "@/components/Action.vue";
     margin: 20px;
   }
 }
+
+@media screen and (max-width: 736px) {
+  .HomeView {
+    font-size: 12px;
+  }
+}
 </style>

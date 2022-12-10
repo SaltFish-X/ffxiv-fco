@@ -124,4 +124,20 @@ const ballcolorStatus = computed(() =>
   border: soild 1px #000;
   border-radius: 10px;
 }
+
+@media screen and (max-width: 736px) {
+  .Progress {
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    background: #fff;
+  }
+
+  .ball {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    margin: auto 2px;
+  }
+}
 </style>
