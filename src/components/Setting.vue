@@ -111,9 +111,9 @@ const form = reactive({
 
 onMounted(() => {
   const LocalForm = getLocalForm();
-  form.ProgressEfficiency = LocalForm.ProgressEfficiency || 3804;
-  form.QualityEfficiency = LocalForm.QualityEfficiency || 3804;
-  form.TotalCP = LocalForm.TotalCP || 588;
+  form.ProgressEfficiency = LocalForm.ProgressEfficiency || 3820;
+  form.QualityEfficiency = LocalForm.QualityEfficiency || 3640;
+  form.TotalCP = LocalForm.TotalCP || 676;
   statusStore.setSetting(form);
 
   handleChage(recipe.value);
