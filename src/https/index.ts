@@ -13,7 +13,7 @@ export interface YWZResponse<T> {
 interface YWZRequestConfig<T, R> extends RequestConfig<YWZResponse<R>> {
   data?: T;
 }
-const baseUrl = "https://fcotest.yyyy.games";
+const baseUrl = "https://fapi.yyyy.games/";
 
 const request = new Request({
   baseURL: baseUrl,
