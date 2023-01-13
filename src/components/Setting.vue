@@ -56,6 +56,16 @@
         <el-form-item label="加工压制系数">
           <el-input v-model="form.QualityModifier" />
         </el-form-item>
+        <el-form-item label="球色">
+          <el-select v-model="form.statusMode">
+            <el-option
+              v-for="item in ballOption"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
       </el-form>
     </div>
   </div>
@@ -69,7 +79,7 @@ import { useStatusStore } from "@/stores/status";
 const progressStore = useProgressStore();
 const statusStore = useStatusStore();
 
-const recipe = ref(1);
+const recipe = ref(2);
 const recipeOption = ref([
   {
     label: "自定义",
@@ -81,6 +91,7 @@ const recipeOption = ref([
     QualityDivider: 100,
     ProgressModifier: 100,
     QualityModifier: 100,
+    statusMode: 0,
   },
   {
     label: "6.2 獭獭泉",
@@ -92,6 +103,19 @@ const recipeOption = ref([
     QualityDivider: 180,
     ProgressModifier: 100,
     QualityModifier: 100,
+    statusMode: 435,
+  },
+  {
+    label: "6.3 高难",
+    value: 2,
+    TotalDurability: 60,
+    TotalProgress: 7920,
+    TotalQuality: 17240,
+    ProgressDivider: 180,
+    QualityDivider: 180,
+    ProgressModifier: 100,
+    QualityModifier: 100,
+    statusMode: 499,
   },
 ]);
 
@@ -107,7 +131,16 @@ const form = reactive({
   ProgressModifier: 100,
   QualityModifier: 100,
   Mode: 2,
+  statusMode: 435,
 });
+
+const ballOption = reactive([
+  // { label: "4色-白红彩黑", value: 15 },
+  { label: "5色-白红黄蓝绿", value: 115 },
+  { label: "6色-白红黄蓝紫深蓝囗（无绿", value: 435 },
+  { label: "6色-白红囗蓝紫深蓝绿（无黄", value: 483 },
+  { label: "7色-白红黄蓝紫深蓝绿", value: 499 },
+]);
 
 onMounted(() => {
   const LocalForm = getLocalForm();
@@ -129,6 +162,7 @@ const handleChage = (value: number) => {
     form.QualityDivider = find.QualityDivider;
     form.ProgressModifier = find.ProgressModifier;
     form.QualityModifier = find.QualityModifier;
+    form.statusMode = find.statusMode;
 
     statusStore.setSetting(form);
   }
