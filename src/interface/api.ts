@@ -28,10 +28,10 @@ export interface initApiView {
   ProgressModifier: number;
   // 配方品质等级
   QualityModifier: number;
-  // 模式
+  // 球色参数
   Mode: number;
   // 球色参数
-  statusMode: number;
+  // statusMode: number;
 }
 
 export interface statusApiView {

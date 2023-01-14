@@ -3,5 +3,9 @@
 @tailwind utilities;
 
 .el-button {
-  background-color: var(--el-button-bg-color, var(--el-color-white))
+  background-color: var(--el-button-bg-color, var(--el-color-white));
+}
+
+.el-select {
+  width: 100%;
 }

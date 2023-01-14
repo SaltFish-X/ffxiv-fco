@@ -37,6 +37,7 @@ export const ballcolor =[
   },
   // 獭獭泉不存在的绿球
   {
+    name:'Pliant',
     color:'	#008000', //绿色
     remark:'高效 技能的制作力消耗减半',
     tips:'',
@@ -50,7 +51,7 @@ export const ballcolor =[
 // CYAN = Status("Malleable", "cyan")
 // BLUE = Status("Sturdy", "blue ")
 // PURPLE = Status("Primed", "purple")
-// GREEN = Status("s ", "green")
+// GREEN = Status("Pliant", "green")
 // BLACK = Status("Poor", "black") 
 // RAINBOW = Status("Excellent", "rainbow")
 // nornal HQ Centered Malleable Sturdy Primed

@@ -17,13 +17,13 @@
         <el-form-item label="制作力">
           <el-input v-model="form.TotalCP" />
         </el-form-item>
-        <el-form-item label="是否专家">
+        <!-- <el-form-item label="是否专家">
           <el-switch
             v-model="form.Mode"
             :active-value="2"
             :inactive-value="1"
           />
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="配方选择">
           <el-select v-model="recipe" @change="handleChage">
             <el-option
@@ -57,7 +57,7 @@
           <el-input v-model="form.QualityModifier" />
         </el-form-item>
         <el-form-item label="球色">
-          <el-select v-model="form.statusMode">
+          <el-select v-model="form.Mode">
             <el-option
               v-for="item in ballOption"
               :key="item.value"
@@ -91,7 +91,7 @@ const recipeOption = ref([
     QualityDivider: 100,
     ProgressModifier: 100,
     QualityModifier: 100,
-    statusMode: 0,
+    Mode: 499,
   },
   {
     label: "6.2 獭獭泉",
@@ -103,7 +103,7 @@ const recipeOption = ref([
     QualityDivider: 180,
     ProgressModifier: 100,
     QualityModifier: 100,
-    statusMode: 435,
+    Mode: 435,
   },
   {
     label: "6.3 高难",
@@ -115,7 +115,7 @@ const recipeOption = ref([
     QualityDivider: 180,
     ProgressModifier: 100,
     QualityModifier: 100,
-    statusMode: 499,
+    Mode: 499,
   },
 ]);
 
@@ -130,12 +130,12 @@ const form = reactive({
   QualityDivider: 11.5,
   ProgressModifier: 100,
   QualityModifier: 100,
-  Mode: 2,
-  statusMode: 435,
+  Mode: 435,
 });
 
 const ballOption = reactive([
-  // { label: "4色-白红彩黑", value: 15 },
+  // { label: "1色-白", value: 0 },
+  // { label: "4色-白红彩黑", value: 15 }, 或者 1也是一样
   { label: "5色-白红黄蓝绿", value: 115 },
   { label: "6色-白红黄蓝紫深蓝囗（无绿", value: 435 },
   { label: "6色-白红囗蓝紫深蓝绿（无黄", value: 483 },
@@ -162,7 +162,7 @@ const handleChage = (value: number) => {
     form.QualityDivider = find.QualityDivider;
     form.ProgressModifier = find.ProgressModifier;
     form.QualityModifier = find.QualityModifier;
-    form.statusMode = find.statusMode;
+    form.Mode = find.Mode;
 
     statusStore.setSetting(form);
   }
