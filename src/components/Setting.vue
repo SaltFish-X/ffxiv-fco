@@ -84,17 +84,17 @@ const recipeOption = ref([
   {
     label: "自定义",
     value: 0,
-    TotalDurability: 80,
+    TotalDurability: 60,
     TotalProgress: 0,
     TotalQuality: 0,
-    ProgressDivider: 100,
-    QualityDivider: 100,
+    ProgressDivider: 180,
+    QualityDivider: 180,
     ProgressModifier: 100,
     QualityModifier: 100,
     Mode: 499,
   },
   {
-    label: "6.2 獭獭泉",
+    label: "6.2 高难",
     value: 1,
     TotalDurability: 60,
     TotalProgress: 7480,
@@ -116,6 +116,18 @@ const recipeOption = ref([
     ProgressModifier: 100,
     QualityModifier: 100,
     Mode: 499,
+  },
+  {
+    label: "6.4 高难",
+    value: 2,
+    TotalDurability: 60,
+    TotalProgress: 8800,
+    TotalQuality: 18040,
+    ProgressDivider: 180,
+    QualityDivider: 180,
+    ProgressModifier: 100,
+    QualityModifier: 100,
+    Mode: 483,
   },
 ]);
 
@@ -140,6 +152,7 @@ const ballOption = reactive([
   { label: "6色-白红黄蓝紫深蓝囗（无绿", value: 435 },
   { label: "6色-白红囗蓝紫深蓝绿（无黄", value: 483 },
   { label: "7色-白红黄蓝紫深蓝绿", value: 499 },
+  // { label: "6色-白红囗蓝紫深蓝绿（无黄", value: 995 }, 483 + 新球
 ]);
 
 onMounted(() => {
