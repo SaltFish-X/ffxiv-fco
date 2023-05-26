@@ -152,7 +152,7 @@ const ballOption = reactive([
   { label: "6色-白红黄蓝紫深蓝囗（无绿", value: 435 },
   { label: "6色-白红囗蓝紫深蓝绿（无黄", value: 483 },
   { label: "7色-白红黄蓝紫深蓝绿", value: 499 },
-  // { label: "6色-白红囗蓝紫深蓝绿（无黄", value: 995 }, 483 + 新球
+  { label: "6色-白红囗蓝紫深蓝绿粉（新球", value: 995 },
 ]);
 
 onMounted(() => {

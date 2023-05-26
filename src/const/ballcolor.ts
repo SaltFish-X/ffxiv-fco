@@ -38,8 +38,15 @@ export const ballcolor =[
   // 獭獭泉不存在的绿球
   {
     name:'Pliant',
-    color:'	#008000', //绿色
+    color:'#008000', //绿色
     remark:'高效 技能的制作力消耗减半',
+    tips:'',
+  },
+  // 新球
+  {
+    name:'GoodOmen',
+    color:'#FFE8CA', // 米黄
+    remark:'高品质预兆 下个球色必为红色',
     tips:'',
   },
 ]
