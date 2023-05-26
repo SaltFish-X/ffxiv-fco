@@ -79,7 +79,7 @@ import { useStatusStore } from "@/stores/status";
 const progressStore = useProgressStore();
 const statusStore = useStatusStore();
 
-const recipe = ref(2);
+const recipe = ref(3);
 const recipeOption = ref([
   {
     label: "自定义",
@@ -91,7 +91,7 @@ const recipeOption = ref([
     QualityDivider: 180,
     ProgressModifier: 100,
     QualityModifier: 100,
-    Mode: 499,
+    Mode: 115,
   },
   {
     label: "6.2 高难",
@@ -119,7 +119,7 @@ const recipeOption = ref([
   },
   {
     label: "6.4 高难",
-    value: 2,
+    value: 3,
     TotalDurability: 60,
     TotalProgress: 8800,
     TotalQuality: 18040,
@@ -127,7 +127,7 @@ const recipeOption = ref([
     QualityDivider: 180,
     ProgressModifier: 100,
     QualityModifier: 100,
-    Mode: 483,
+    Mode: 995,
   },
 ]);
 
