@@ -30,8 +30,8 @@ export interface initApiView {
   QualityModifier: number;
   // 球色参数
   Mode: number;
-  // 球色参数
-  // statusMode: number;
+  // 高品质倍率
+  Red: number; 
 }
 
 export interface statusApiView {

@@ -67,6 +67,9 @@
           </el-select>
         </el-form-item>
       </el-form>
+      <el-form-item label="高品质倍率（1.5或1.75）">
+        <el-input v-model="form.Red" />
+      </el-form-item>
     </div>
   </div>
 </template>
@@ -143,6 +146,7 @@ const form = reactive({
   ProgressModifier: 100,
   QualityModifier: 100,
   Mode: 435,
+  Red: 1.5,
 });
 
 const ballOption = reactive([
@@ -160,6 +164,7 @@ onMounted(() => {
   form.ProgressEfficiency = LocalForm.ProgressEfficiency || 3820;
   form.QualityEfficiency = LocalForm.QualityEfficiency || 3640;
   form.TotalCP = LocalForm.TotalCP || 676;
+  form.Red = LocalForm.Red || 1.5;
   statusStore.setSetting(form);
 
   handleChage(recipe.value);
