@@ -9,21 +9,14 @@
     <div v-show="!progressStore.start">
       <el-form :model="form" label-width="100px" label-position="left">
         <el-form-item label="制作精度">
-          <el-input v-model="form.ProgressEfficiency" />
+          <el-input v-model.number="form.ProgressEfficiency" />
         </el-form-item>
         <el-form-item label="加工精度">
-          <el-input v-model="form.QualityEfficiency" />
+          <el-input v-model.number="form.QualityEfficiency" />
         </el-form-item>
         <el-form-item label="制作力">
-          <el-input v-model="form.TotalCP" />
+          <el-input v-model.number="form.TotalCP" />
         </el-form-item>
-        <!-- <el-form-item label="是否专家">
-          <el-switch
-            v-model="form.Mode"
-            :active-value="2"
-            :inactive-value="1"
-          />
-        </el-form-item> -->
         <el-form-item label="配方选择">
           <el-select v-model="recipe" @change="handleChage">
             <el-option
@@ -36,28 +29,28 @@
         </el-form-item>
 
         <el-form-item label="配方总耐久">
-          <el-input v-model="form.TotalDurability" />
+          <el-input v-model.number="form.TotalDurability" />
         </el-form-item>
         <el-form-item label="配方总进度">
-          <el-input v-model="form.TotalProgress" />
+          <el-input v-model.number="form.TotalProgress" />
         </el-form-item>
         <el-form-item label="配方总品质">
-          <el-input v-model="form.TotalQuality" />
+          <el-input v-model.number="form.TotalQuality" />
         </el-form-item>
         <el-form-item label="作业难度系数">
-          <el-input v-model="form.ProgressDivider" />
+          <el-input v-model.number="form.ProgressDivider" />
         </el-form-item>
         <el-form-item label="加工难度系数">
-          <el-input v-model="form.QualityDivider" />
+          <el-input v-model.number="form.QualityDivider" />
         </el-form-item>
         <el-form-item label="作业压制系数">
-          <el-input v-model="form.ProgressModifier" />
+          <el-input v-model.number="form.ProgressModifier" />
         </el-form-item>
         <el-form-item label="加工压制系数">
-          <el-input v-model="form.QualityModifier" />
+          <el-input v-model.number="form.QualityModifier" />
         </el-form-item>
         <el-form-item label="球色">
-          <el-select v-model="form.Mode">
+          <el-select v-model.number="form.Mode">
             <el-option
               v-for="item in ballOption"
               :key="item.value"
@@ -68,7 +61,7 @@
         </el-form-item>
       </el-form>
       <el-form-item label="高品质倍率（1.5或1.75）">
-        <el-input v-model="form.Red" />
+        <el-input v-model.number="form.Red" />
       </el-form-item>
     </div>
   </div>
@@ -161,10 +154,10 @@ const ballOption = reactive([
 
 onMounted(() => {
   const LocalForm = getLocalForm();
-  form.ProgressEfficiency = LocalForm.ProgressEfficiency || 3820;
-  form.QualityEfficiency = LocalForm.QualityEfficiency || 3640;
-  form.TotalCP = LocalForm.TotalCP || 676;
-  form.Red = LocalForm.Red || 1.5;
+  form.ProgressEfficiency = Number(LocalForm.ProgressEfficiency || 0);
+  form.QualityEfficiency = Number(LocalForm.QualityEfficiency || 0);
+  form.TotalCP = Number(LocalForm.TotalCP || 0);
+  form.Red = Number(LocalForm.Red || 1.5);
   statusStore.setSetting(form);
 
   handleChage(recipe.value);
