@@ -1,17 +1,19 @@
 <template>
   <div class="mx-8 mt-4 HomeView">
-    <div class="mb-4 flex-1">
-      <Progress class="mb-4"></Progress>
-      <Action></Action>
+    <div class="mb-4 mr-12 flex-1">
+      <Progress></Progress>
+      <Statistics></Statistics>
     </div>
 
     <Setting class="flex-1"></Setting>
+    <Action class="flex-1"></Action>
   </div>
 </template>
 <script lang="ts" setup>
 import Progress from "@/components/Progress.vue";
 import Setting from "@/components/Setting.vue";
 import Action from "@/components/Action.vue";
+import Statistics from "@/components/Statistics.vue";
 </script>
 <style>
 @media screen and (min-width: 736px) {

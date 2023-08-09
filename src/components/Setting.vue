@@ -1,69 +1,61 @@
 <template>
-  <div class="Setting ml-5">
-    <div v-show="progressStore.start">
-      <div>{{ recordTurn }}</div>
-      <div>{{ rapidRecord }}</div>
-      <div v-show="statusStore.Current.InnerQuiet">{{ extraDurability }}</div>
-    </div>
-
-    <div v-show="!progressStore.start">
-      <el-form :model="form" label-width="100px" label-position="left">
-        <el-form-item label="制作精度">
-          <el-input v-model.number="form.ProgressEfficiency" />
-        </el-form-item>
-        <el-form-item label="加工精度">
-          <el-input v-model.number="form.QualityEfficiency" />
-        </el-form-item>
-        <el-form-item label="制作力">
-          <el-input v-model.number="form.TotalCP" />
-        </el-form-item>
-        <el-form-item label="配方选择">
-          <el-select v-model="recipe" @change="handleChage">
-            <el-option
-              v-for="item in recipeOption"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
-        </el-form-item>
-
-        <el-form-item label="配方总耐久">
-          <el-input v-model.number="form.TotalDurability" />
-        </el-form-item>
-        <el-form-item label="配方总进度">
-          <el-input v-model.number="form.TotalProgress" />
-        </el-form-item>
-        <el-form-item label="配方总品质">
-          <el-input v-model.number="form.TotalQuality" />
-        </el-form-item>
-        <el-form-item label="作业难度系数">
-          <el-input v-model.number="form.ProgressDivider" />
-        </el-form-item>
-        <el-form-item label="加工难度系数">
-          <el-input v-model.number="form.QualityDivider" />
-        </el-form-item>
-        <el-form-item label="作业压制系数">
-          <el-input v-model.number="form.ProgressModifier" />
-        </el-form-item>
-        <el-form-item label="加工压制系数">
-          <el-input v-model.number="form.QualityModifier" />
-        </el-form-item>
-        <el-form-item label="球色">
-          <el-select v-model.number="form.Mode">
-            <el-option
-              v-for="item in ballOption"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
-        </el-form-item>
-      </el-form>
-      <el-form-item label="高品质倍率（1.5或1.75）">
-        <el-input v-model.number="form.Red" />
+  <div class="Setting" v-show="!progressStore.start">
+    <el-form :model="form" label-width="100px" label-position="left">
+      <el-form-item label="制作精度">
+        <el-input v-model.number="form.ProgressEfficiency" />
       </el-form-item>
-    </div>
+      <el-form-item label="加工精度">
+        <el-input v-model.number="form.QualityEfficiency" />
+      </el-form-item>
+      <el-form-item label="制作力">
+        <el-input v-model.number="form.TotalCP" />
+      </el-form-item>
+      <el-form-item label="配方选择">
+        <el-select v-model="recipe" @change="handleChage">
+          <el-option
+            v-for="item in recipeOption"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </el-form-item>
+
+      <el-form-item label="配方总耐久">
+        <el-input v-model.number="form.TotalDurability" />
+      </el-form-item>
+      <el-form-item label="配方总进度">
+        <el-input v-model.number="form.TotalProgress" />
+      </el-form-item>
+      <el-form-item label="配方总品质">
+        <el-input v-model.number="form.TotalQuality" />
+      </el-form-item>
+      <el-form-item label="作业难度系数">
+        <el-input v-model.number="form.ProgressDivider" />
+      </el-form-item>
+      <el-form-item label="加工难度系数">
+        <el-input v-model.number="form.QualityDivider" />
+      </el-form-item>
+      <el-form-item label="作业压制系数">
+        <el-input v-model.number="form.ProgressModifier" />
+      </el-form-item>
+      <el-form-item label="加工压制系数">
+        <el-input v-model.number="form.QualityModifier" />
+      </el-form-item>
+      <el-form-item label="球色">
+        <el-select v-model.number="form.Mode">
+          <el-option
+            v-for="item in ballOption"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          />
+        </el-select>
+      </el-form-item>
+    </el-form>
+    <el-form-item label="高品质倍率（1.5或1.75）">
+      <el-input v-model.number="form.Red" />
+    </el-form-item>
   </div>
 </template>
 <script lang="ts" setup>
@@ -199,28 +191,4 @@ watch(
     setLocalForm();
   }
 );
-
-const recordTurn = computed(() => {
-  return `制作总次数：${progressStore.count.allTurn}；制作成功次数：${
-    progressStore.count.successTurn
-  }；制作成功率：${Math.round(
-    progressStore.count.allTurn
-      ? (progressStore.count.successTurn * 100) / progressStore.count.allTurn
-      : 0
-  )}%`;
-});
-
-const rapidRecord = computed(() => {
-  return `高速总数：${progressStore.count.rapidAll}；高速总成功数：${progressStore.count.rapidSuccess}；本轮高速次数${progressStore.count.rapidAllTurn}；本轮高速成功次数${progressStore.count.rapidSuccessTurn}`;
-});
-
-const extraDurability = computed(() => {
-  // 当前耐久 + 5*掌握层数 - 5*(10-内静层数) - 11
-  const extra =
-    statusStore.Current.CurrentDurability +
-    5 * statusStore.Current.Buffs.Manipulation -
-    5 * (10 - statusStore.Current.InnerQuiet) -
-    11;
-  return `额外耐久：${extra}`;
-});
 </script>
