@@ -52,8 +52,11 @@
           />
         </el-select>
       </el-form-item>
-      <el-form-item label="高品质倍率（1.5或1.75）">
-        <el-input v-model.number="form.Red" />
+      <el-form-item label="主手工具">
+        <el-radio-group v-model="form.Red">
+          <el-radio-button :label="1.5">普通工具</el-radio-button>
+          <el-radio-button :label="1.75">莫雯工具</el-radio-button>
+        </el-radio-group>
       </el-form-item>
     </el-form>
   </div>
@@ -137,11 +140,11 @@ const form = reactive({
 const ballOption = reactive([
   // { label: "1色-白", value: 0 },
   // { label: "4色-白红彩黑", value: 15 }, 或者 1也是一样
-  { label: "5色-白红黄蓝绿", value: 115 },
-  { label: "6色-白红黄蓝紫深蓝囗（无绿", value: 435 },
-  { label: "6色-白红囗蓝紫深蓝绿（无黄", value: 483 },
-  { label: "7色-白红黄蓝紫深蓝绿", value: 499 },
-  { label: "6色-白红囗蓝紫深蓝绿粉（新球", value: 995 },
+  // { label: "5色-白红黄蓝绿", value: 115 },
+  { label: "6色-白红黄蓝紫深蓝（6.2高难）", value: 435 },
+  { label: "6色-白红蓝紫深蓝绿（无黄", value: 483 },
+  { label: "7色-白红黄蓝紫深蓝绿（6.3高难）", value: 499 },
+  { label: "6色-白红蓝紫深蓝绿粉（6.4高难）", value: 995 },
 ]);
 
 onMounted(() => {
