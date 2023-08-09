@@ -52,10 +52,10 @@
           />
         </el-select>
       </el-form-item>
+      <el-form-item label="高品质倍率（1.5或1.75）">
+        <el-input v-model.number="form.Red" />
+      </el-form-item>
     </el-form>
-    <el-form-item label="高品质倍率（1.5或1.75）">
-      <el-input v-model.number="form.Red" />
-    </el-form-item>
   </div>
 </template>
 <script lang="ts" setup>
