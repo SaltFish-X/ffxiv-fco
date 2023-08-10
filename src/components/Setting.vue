@@ -62,18 +62,18 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, reactive, ref, watch, computed } from "vue";
-import { postStatus } from "@/https/api";
-import { useProgressStore } from "@/stores/progress";
-import { useStatusStore } from "@/stores/status";
+import { onMounted, reactive, ref, watch, computed } from 'vue'
+import { postStatus } from '@/https/api'
+import { useProgressStore } from '@/stores/progress'
+import { useStatusStore } from '@/stores/status'
 
-const progressStore = useProgressStore();
-const statusStore = useStatusStore();
+const progressStore = useProgressStore()
+const statusStore = useStatusStore()
 
-const recipe = ref(3);
+const recipe = ref(3)
 const recipeOption = ref([
   {
-    label: "自定义",
+    label: '自定义',
     value: 0,
     TotalDurability: 60,
     TotalProgress: 0,
@@ -85,7 +85,7 @@ const recipeOption = ref([
     Mode: 115,
   },
   {
-    label: "6.2 高难",
+    label: '6.2 高难',
     value: 1,
     TotalDurability: 60,
     TotalProgress: 7480,
@@ -97,7 +97,7 @@ const recipeOption = ref([
     Mode: 435,
   },
   {
-    label: "6.3 高难",
+    label: '6.3 高难',
     value: 2,
     TotalDurability: 60,
     TotalProgress: 7920,
@@ -109,7 +109,7 @@ const recipeOption = ref([
     Mode: 499,
   },
   {
-    label: "6.4 高难",
+    label: '6.4 高难',
     value: 3,
     TotalDurability: 60,
     TotalProgress: 8800,
@@ -120,7 +120,7 @@ const recipeOption = ref([
     QualityModifier: 100,
     Mode: 995,
   },
-]);
+])
 
 const form = reactive({
   ProgressEfficiency: 4048,
@@ -135,63 +135,63 @@ const form = reactive({
   QualityModifier: 100,
   Mode: 435,
   Red: 1.5,
-});
+})
 
 const ballOption = reactive([
   // { label: "1色-白", value: 0 },
   // { label: "4色-白红彩黑", value: 15 }, 或者 1也是一样
   // { label: "5色-白红黄蓝绿", value: 115 },
-  { label: "6色-白红黄蓝紫深蓝（6.2高难）", value: 435 },
-  { label: "6色-白红蓝紫深蓝绿（无黄", value: 483 },
-  { label: "7色-白红黄蓝紫深蓝绿（6.3高难）", value: 499 },
-  { label: "6色-白红蓝紫深蓝绿粉（6.4高难）", value: 995 },
-]);
+  { label: '6色-白红黄蓝紫深蓝（6.2高难）', value: 435 },
+  { label: '6色-白红蓝紫深蓝绿（无黄', value: 483 },
+  { label: '7色-白红黄蓝紫深蓝绿（6.3高难）', value: 499 },
+  { label: '6色-白红蓝紫深蓝绿粉（6.4高难）', value: 995 },
+])
 
 onMounted(() => {
-  const LocalForm = getLocalForm();
-  form.ProgressEfficiency = Number(LocalForm.ProgressEfficiency || 0);
-  form.QualityEfficiency = Number(LocalForm.QualityEfficiency || 0);
-  form.TotalCP = Number(LocalForm.TotalCP || 0);
-  form.Red = Number(LocalForm.Red || 1.5);
-  statusStore.setSetting(form);
+  const LocalForm = getLocalForm()
+  form.ProgressEfficiency = Number(LocalForm.ProgressEfficiency || 0)
+  form.QualityEfficiency = Number(LocalForm.QualityEfficiency || 0)
+  form.TotalCP = Number(LocalForm.TotalCP || 0)
+  form.Red = Number(LocalForm.Red || 1.5)
+  statusStore.setSetting(form)
 
-  handleChage(recipe.value);
-});
+  handleChage(recipe.value)
+})
 
 const handleChage = (value: number) => {
-  const find = recipeOption.value.find((e) => e.value === value);
+  const find = recipeOption.value.find((e) => e.value === value)
   if (find) {
-    form.TotalDurability = find.TotalDurability;
-    form.TotalProgress = find.TotalProgress;
-    form.TotalQuality = find.TotalQuality;
-    form.ProgressDivider = find.ProgressDivider;
-    form.QualityDivider = find.QualityDivider;
-    form.ProgressModifier = find.ProgressModifier;
-    form.QualityModifier = find.QualityModifier;
-    form.Mode = find.Mode;
+    form.TotalDurability = find.TotalDurability
+    form.TotalProgress = find.TotalProgress
+    form.TotalQuality = find.TotalQuality
+    form.ProgressDivider = find.ProgressDivider
+    form.QualityDivider = find.QualityDivider
+    form.ProgressModifier = find.ProgressModifier
+    form.QualityModifier = find.QualityModifier
+    form.Mode = find.Mode
 
-    statusStore.setSetting(form);
+    statusStore.setSetting(form)
   }
-};
+}
 
 function handlePostStatus() {
-  postStatus(progressStore.uid, form);
-  statusStore.init();
+  postStatus(progressStore.uid, form)
+  statusStore.init()
 }
 
 function setLocalForm() {
-  window.localStorage.setItem("form", JSON.stringify(form));
+  window.localStorage.setItem('form', JSON.stringify(form))
 }
 
 function getLocalForm() {
-  return JSON.parse(window.localStorage.getItem("form") || "0");
+  return JSON.parse(window.localStorage.getItem('form') || '0')
 }
 
 watch(
   () => progressStore.uid,
   (count, prevCount) => {
-    handlePostStatus();
-    setLocalForm();
+    handlePostStatus()
+    setLocalForm()
   }
-);
+)
 </script>

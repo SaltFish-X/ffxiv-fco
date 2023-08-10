@@ -5,7 +5,7 @@
         进展
         {{
           StatusStore.Current.CurrentProgress +
-          "/" +
+          '/' +
           StatusStore.Setting.TotalProgress
         }}
       </div>
@@ -24,7 +24,7 @@
         品质
         {{
           StatusStore.Current.CurrentQuality +
-          "/" +
+          '/' +
           StatusStore.Setting.TotalQuality
         }}
       </div>
@@ -41,7 +41,7 @@
       </div>
       <div>
         制作力
-        {{ StatusStore.Current.CurrentCP + "/" + StatusStore.Setting.TotalCP }}
+        {{ StatusStore.Current.CurrentCP + '/' + StatusStore.Setting.TotalCP }}
       </div>
       <div>
         <el-progress
@@ -56,7 +56,7 @@
         <div>
           耐久度:{{
             StatusStore.Current.CurrentDurability +
-            "/" +
+            '/' +
             StatusStore.Setting.TotalDurability
           }}
         </div>
@@ -105,30 +105,30 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { useStatusStore } from "@/stores/status";
-import { useProgressStore } from "@/stores/progress";
-import { ballcolor } from "@/const/ballcolor";
-import { computed } from "@vue/reactivity";
-import { getImageUrl } from "@/utils/getImageUrl";
-import InnerQuiet from "@/assets/InnerQuiet.png";
-const progressStore = useProgressStore();
-const StatusStore = useStatusStore();
+import { useStatusStore } from '@/stores/status'
+import { useProgressStore } from '@/stores/progress'
+import { ballcolor } from '@/const/ballcolor'
+import { computed } from '@vue/reactivity'
+import { getImageUrl } from '@/utils/getImageUrl'
+import InnerQuiet from '@/assets/InnerQuiet.png'
+const progressStore = useProgressStore()
+const StatusStore = useStatusStore()
 
 function handleStart() {
-  progressStore.handleStart();
+  progressStore.handleStart()
 }
 
 function handleEnd() {
-  progressStore.handleEnd();
+  progressStore.handleEnd()
 }
 
 const ballcolorStatus = computed(() =>
   ballcolor.find((e) => e.name === StatusStore.Current.CurrentStatus)
-);
+)
 
 const colortext = computed(() =>
-  progressStore.message.code === 100 ? "succuess" : "warnning"
-);
+  progressStore.message.code === 100 ? 'succuess' : 'warnning'
+)
 </script>
 <style>
 .ball {
